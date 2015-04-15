@@ -18,11 +18,23 @@
 
 <items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 			xsi:noNamespaceSchemaLocation="items.xsd">
-
+	<enumtypes>
+		<enumtype code="BeaconType" generate="true" autocreate="true">
+			<description>This enumeration defines beacon type</description>
+			<value code="Entry" />
+			<value code="Exit" />
+			<value code="Product" />
+			<value code="Checkout" />
+		</enumtype>
+	</enumtypes>
+	<relations>
+		<relation generate="true" localized="false"	code="Beacon2BeaconType" autocreate="true">
+			<description>This relation connects the beacon with their types.</description>
+			<sourceElement type="Beacon" cardinality="one" qualifier="beacon" />
+			<targetElement type="BeaconType" cardinality="many" qualifier="beaconType" collectiontype="list" />
+		</relation>
+	</relations>
 	<itemtypes>
-
-
-
 		<itemtype code="StoreActivity" autocreate="true" generate="true" extends="GenericItem">
 			<deployment table="StoreActivity" typecode="11009" />
 			<attributes>
@@ -51,7 +63,26 @@
 					<modifiers read="true" write="true" search="true" optional="true" />
 					<persistence type="property" />
 				</attribute>
-				</attributes>
-				</itemtype>
+			</attributes>
+		</itemtype>
+		
+		<itemtype code="Beacon" autocreate="true" generate="true" extends="GenericItem">
+			<deployment table="Beacon" typecode="11010" />
+			<attributes>
+				<attribute qualifier="id" type="java.lang.String">
+					<description>beacon unique id</description>
+					<modifiers read="true" write="true" search="true" optional="false" unique="false"/>
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="majorId " type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="false" unique="true"/>
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="minorId " type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="false" unique="true"/>
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
 	</itemtypes>
 </items>
