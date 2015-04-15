@@ -25,5 +25,9 @@
 		<property name="flag" type="boolean"/>
 	</bean>
 	-->
+	<bean class="com.acc.data.WebserviceResponseData">
+		<property name="response" type="String"/>
+	</bean>
+	
 
 </beans>
