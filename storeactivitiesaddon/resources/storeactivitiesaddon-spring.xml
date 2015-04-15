@@ -81,7 +81,16 @@
 	      	            !execution(* getPK(..))" />  	            
 	       <aop:pointcut id="profiledMethods" expression="execution(* *(..))" />	
 	  -->
-	
-			
+	 <bean id="beaconTypeDao" class="com.acc.dao.impl.BeaconTypeDaoImpl">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	<bean id="beaconTypeService" class="com.acc.service.impl.BeaconTypeServiceImpl">
+		<property name="beaconTypeDao" ref="beaconTypeDao"/>
+	</bean>
+	<bean id="beaconTypeFacade" class="com.acc.facade.impl.BeaconTypeFacadeImpl">
+		<property name="beaconTypeService" ref="beaconTypeService"/>
+	</bean> 
+	 		
 			
 </beans>
