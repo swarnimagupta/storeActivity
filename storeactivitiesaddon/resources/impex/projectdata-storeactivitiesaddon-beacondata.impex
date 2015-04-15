@@ -1,9 +1,4 @@
-# ImpEx for Promotions for Electronics Store
-
-$defaultPromoGrp=electronicsPromoGrp
-$productCatalog=electronicsProductCatalog
-$catalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$productCatalog]),CatalogVersion.version[default=Staged])[default=$productCatalog:Staged]
-
+# ImpEx for beacons
 
 INSERT_UPDATE Beacon;id;minorId[unique=true];majorId[unique=true];beaconType(code)[mode=append]
 ;12168afc-c27e-4845-ba90-e7b5484bdbba;3.00;2.00;Entry
