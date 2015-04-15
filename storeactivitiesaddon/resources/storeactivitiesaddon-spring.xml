@@ -91,6 +91,33 @@
 	<bean id="beaconTypeFacade" class="com.acc.facade.impl.BeaconTypeFacadeImpl">
 		<property name="beaconTypeService" ref="beaconTypeService"/>
 	</bean> 
-	 		
+	<bean id="storeActivityDao" class="com.acc.dao.impl.StoreActivityDaoImpl">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	<bean id="storeActivityService" class="com.acc.service.impl.StoreActivityServiceImpl">
+		<property name="storeActivityDao" ref="storeActivityDao"/>
+	</bean>
+	
+	<bean id="storeActivityFacade" class="com.acc.facade.impl.StoreActivityFacadeImpl">
+		<property name="storeActivityService" ref="storeActivityService"/>
+		<property name="storeActivityConverter" ref="storeActivityConverter"/>
+		
+	</bean>
+	
+	<bean id="storeActivityPopulator" class="com.acc.populator.StoreActivityPopulator">
+	</bean>
+	
+	<bean id="storeActivityData" class="com.acc.data.StoreActivityData" scope="prototype"/>
+
+	<bean id="storeActivityConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="storeActivityData"/>
+		<property name="populators">
+			<list>
+				<ref bean="storeActivityPopulator"/>
+			</list>
+		</property>
+	</bean>
+			
 			
 </beans>

@@ -26,8 +26,22 @@
 	</bean>
 	-->
 	<bean class="com.acc.data.WebserviceResponseData">
-		<property name="response" type="String"/>
+		<property name="response" type="String"/></bean>
+	
+	<bean class="com.acc.data.StoreActivityData">
+		<property name="storeId" type="String"/>
+		<property name="customerId" type="String"/>
+		<property name="storeVisitDate" type="java.util.Date"/>
+		<property name="storeEntryTime" type="java.util.Date"/>
+		<property name="storeExitTime" type="java.util.Date"/>
+		<property name="timeSpentInStore" type="java.lang.Integer"/>
+		
+	</bean>	
+	
+	<bean class="com.acc.data.StoreCustomerStatusData">
+	<property name="status" type="String"/>
 	</bean>
+
 	
 
 </beans>
