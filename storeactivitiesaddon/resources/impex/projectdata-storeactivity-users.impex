@@ -1,4 +1,0 @@
-INSERT_UPDATE StoreActivity;customerId[unique=true];storeId;storeVisitDate[dateformat=dd.MM.yyyy HH:mm];storeEntryTime[dateformat=dd.MM.yyyy HH:mm];storeExitTime[dateformat=dd.MM.yyyy HH:mm];timeSpentInStore
-;swapnil.a.pandey@accenture.com;Chiba;16.04.2015  15:10;;;
-;swarnima.gupta@accenture.com;Chiba;15.04.2015  15:10;15.04.2015  15:10;15.04.2015  18:10;120
-;kishor.chockalingam@accenture.com;Chiba;16.04.2015  15:10;16.04.2015  15:10;16.04.2015  18:10;120
