@@ -26,12 +26,22 @@
 			<value code="Product" />
 			<value code="Checkout" />
 		</enumtype>
+		<enumtype code="DeviceTypeCode" generate="true" autocreate="true">
+			<description>This enumeration defines the device type</description>
+			<value code="APP001" />
+			<value code="APP002" />
+		</enumtype>
 	</enumtypes>
 	<relations>
 		<relation generate="true" localized="false"	code="Beacon2BeaconType" autocreate="true">
 			<description>This relation connects the beacon with their types.</description>
 			<sourceElement type="Beacon" cardinality="one" qualifier="beacon" />
 			<targetElement type="BeaconType" cardinality="many" qualifier="beaconType" collectiontype="list" />
+		</relation>
+		<relation generate="true" localized="false"	code="Customer2DeviceTypeCode" autocreate="true">
+			<description>This relation connects the customers with their device types.</description>
+			<sourceElement type="Customer" cardinality="one" qualifier="customer" />
+			<targetElement type="DeviceTypeCode" cardinality="many" qualifier="deviceTypeCode" collectiontype="list" />
 		</relation>
 	</relations>
 	<itemtypes>
