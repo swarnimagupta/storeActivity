@@ -97,6 +97,9 @@
 	</bean>
 	<bean id="storeActivityService" class="com.acc.service.impl.StoreActivityServiceImpl">
 		<property name="storeActivityDao" ref="storeActivityDao"/>
+		<property name="modelService" ref="modelService"/>
+		
+		
 	</bean>
 	
 	<bean id="storeActivityFacade" class="com.acc.facade.impl.StoreActivityFacadeImpl">

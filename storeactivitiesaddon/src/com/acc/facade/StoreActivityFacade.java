@@ -3,6 +3,8 @@
  */
 package com.acc.facade;
 
+import java.util.Date;
+
 import com.acc.data.StoreActivityData;
 
 
@@ -13,4 +15,11 @@ import com.acc.data.StoreActivityData;
 public interface StoreActivityFacade
 {
 	public StoreActivityData getStoreDataForCustomer(String customerId);
+
+	public Date customerEntryTime(final String customerId);
+
+	public Date CustomerExitTime(final String customerId);
+
+	public StoreActivityData calculateTimeSpentInStore(final String customerId);
+
 }

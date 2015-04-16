@@ -34,7 +34,7 @@
 		<property name="storeVisitDate" type="java.util.Date"/>
 		<property name="storeEntryTime" type="java.util.Date"/>
 		<property name="storeExitTime" type="java.util.Date"/>
-		<property name="timeSpentInStore" type="java.lang.Integer"/>
+		<property name="timeSpentInStore" type="String"/>
 		
 	</bean>	
 	
