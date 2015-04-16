@@ -26,7 +26,8 @@
 	</bean>
 	-->
 	<bean class="com.acc.data.WebserviceResponseData">
-		<property name="response" type="String"/></bean>
+		<property name="response" type="String"/>
+	</bean>
 	
 	<bean class="com.acc.data.StoreActivityData">
 		<property name="storeId" type="String"/>
@@ -39,9 +40,11 @@
 	</bean>	
 	
 	<bean class="com.acc.data.StoreCustomerStatusData">
-	<property name="status" type="String"/>
+		<property name="status" type="String"/>
 	</bean>
 
-	
+	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData" extends="de.hybris.platform.commercefacades.user.data.PrincipalData">
+		<property name="deviceType" type="java.util.List&lt;String&gt;"/>
+	</bean>
 
 </beans>

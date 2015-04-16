@@ -121,6 +121,23 @@
 			</list>
 		</property>
 	</bean>
-			
+	<alias name="defaultCustomerConverter" alias="customerConverter"/>
+	<bean id="defaultCustomerConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="customerData"/>
+		<property name="populators">
+			<list>
+				<ref bean="customerDevicePopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultCustomerDevicePopulator" alias="customerDevicePopulator"/>
+	<bean id="defaultCustomerDevicePopulator"
+	      class="com.acc.populator.CustomerDeviceTypePopulator" parent="defaultCustomerPopulator">
+		<property name="addressConverter" ref="addressConverter"/>
+		<property name="currencyConverter" ref="currencyConverter"/>
+		<property name="languageConverter" ref="languageConverter"/>
+		<property name="customerNameStrategy" ref="customerNameStrategy"/>
+	</bean>		
 			
 </beans>
