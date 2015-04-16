@@ -34,7 +34,7 @@ public class StoreActivityPopulator implements Populator<StoreActivityModel, Sto
 			target.setStoreExitTime(source.getStoreExitTime());
 			target.setStoreId(source.getStoreId());
 			target.setStoreVisitDate(source.getStoreVisitDate());
-			target.setTimeSpentInStore(source.getTimeSpentInStore());
+			target.setTimeSpentInStore(source.getTimeSpentInStore().toString());
 		}
 	}
 

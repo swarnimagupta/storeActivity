@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.acc.data.StoreActivityData;
 import com.acc.data.StoreCustomerStatusData;
 import com.acc.facade.StoreActivityFacade;
 
@@ -55,11 +54,11 @@ public class StoreActivityController
 		{
 			final JSONParser parser = new JSONParser();
 			final JSONObject obj = (JSONObject) parser.parse(sbuf.toString());
-			final String storeId = String.valueOf((obj.get(STORE_ID)));
+			//final String storeId = String.valueOf((obj.get(STORE_ID)));
 			final String customerId = String.valueOf(obj.get(CUSTOMER_ID));
 			//final String storeVisitDate = String.valueOf(obj.get(STORE_VISIT_DATE));
-			final StoreActivityData storeActivityData = storeActivityFacade.getStoreDataForCustomer(customerId);
-			if (storeActivityData.getStoreId() == storeId && storeActivityFacade.customerEntryTime(customerId) != null
+			//final StoreActivityData storeActivityData = storeActivityFacade.getStoreDataForCustomer(customerId);
+			if (storeActivityFacade.customerEntryTime(customerId) != null
 					&& storeActivityFacade.CustomerExitTime(customerId) == null)
 			{
 				LOG.info("::::::: customerEntryTime1 :::::::" + storeActivityFacade.customerEntryTime(customerId));
@@ -67,7 +66,7 @@ public class StoreActivityController
 				customerStatus.setStatus("CustomerEntered");
 			}
 
-			if (storeActivityData.getStoreId() == storeId && storeActivityFacade.customerEntryTime(customerId) != null
+			if (storeActivityFacade.customerEntryTime(customerId) != null
 					&& storeActivityFacade.CustomerExitTime(customerId) != null)
 			{
 				LOG.info("::::::: customerEntryTime2 :::::::" + storeActivityFacade.customerEntryTime(customerId));
