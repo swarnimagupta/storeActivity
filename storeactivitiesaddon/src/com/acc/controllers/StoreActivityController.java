@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.acc.data.StoreActivityData;
 import com.acc.data.StoreCustomerStatusData;
 import com.acc.facade.StoreActivityFacade;
 
@@ -57,20 +58,20 @@ public class StoreActivityController
 			//final String storeId = String.valueOf((obj.get(STORE_ID)));
 			final String customerId = String.valueOf(obj.get(CUSTOMER_ID));
 			//final String storeVisitDate = String.valueOf(obj.get(STORE_VISIT_DATE));
-			//final StoreActivityData storeActivityData = storeActivityFacade.getStoreDataForCustomer(customerId);
-			if (storeActivityFacade.customerEntryTime(customerId) != null
-					&& storeActivityFacade.CustomerExitTime(customerId) == null)
+			final StoreActivityData storeActivityData = storeActivityFacade.getStoreDataForCustomer(customerId);
+			LOG.info("storecustomerID" + storeActivityData.getCustomerId());
+			if (storeActivityData.getCustomerId().equalsIgnoreCase(customerId) && storeActivityData.getStoreExitTime() == null
+					&& storeActivityFacade.customerEntryTime(customerId) != null)
 			{
-				LOG.info("::::::: customerEntryTime1 :::::::" + storeActivityFacade.customerEntryTime(customerId));
+				LOG.info("::::::: if 1st loop :::::::" + storeActivityFacade.customerEntryTime(customerId));
 
 				customerStatus.setStatus("CustomerEntered");
 			}
 
-			if (storeActivityFacade.customerEntryTime(customerId) != null
+			if (storeActivityData.getCustomerId().equalsIgnoreCase(customerId) && storeActivityData.getStoreEntryTime() != null
 					&& storeActivityFacade.CustomerExitTime(customerId) != null)
 			{
-				LOG.info("::::::: customerEntryTime2 :::::::" + storeActivityFacade.customerEntryTime(customerId));
-				LOG.info("::::::: CustomerExitTime1 :::::::" + storeActivityFacade.CustomerExitTime(customerId));
+				LOG.info("::::::: if 2nd loop :::::::" + storeActivityFacade.CustomerExitTime(customerId));
 
 				customerStatus.setStatus("CustomerExited");
 				storeActivityFacade.calculateTimeSpentInStore(customerId);
@@ -83,7 +84,6 @@ public class StoreActivityController
 		return customerStatus;
 
 	}
-
 
 	private StringBuffer getJsonBodyString(final HttpServletRequest request) throws IOException, UnsupportedEncodingException
 	{

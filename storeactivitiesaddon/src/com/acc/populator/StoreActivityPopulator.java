@@ -6,6 +6,8 @@ package com.acc.populator;
 import de.hybris.platform.converters.Populator;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.acc.data.StoreActivityData;
 import com.acc.model.StoreActivityModel;
 
@@ -34,7 +36,10 @@ public class StoreActivityPopulator implements Populator<StoreActivityModel, Sto
 			target.setStoreExitTime(source.getStoreExitTime());
 			target.setStoreId(source.getStoreId());
 			target.setStoreVisitDate(source.getStoreVisitDate());
-			target.setTimeSpentInStore(source.getTimeSpentInStore().toString());
+			if (StringUtils.isNotEmpty(source.getTimeSpentInStore()))
+			{
+				target.setTimeSpentInStore(source.getTimeSpentInStore().toString());
+			}
 		}
 	}
 

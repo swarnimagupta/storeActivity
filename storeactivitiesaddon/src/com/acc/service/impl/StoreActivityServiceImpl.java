@@ -85,16 +85,14 @@ public class StoreActivityServiceImpl implements StoreActivityService
 
 		LOG.info("::::::: in customerEntryTime method:::::::");
 
-		final StoreCustomerStatusData customerStatus = new StoreCustomerStatusData();
 		final StoreActivityModel storeActivityModel = storeActivityDao.getStoreDataForCustomer(customerId);
 		if (null == storeActivityModel.getStoreEntryTime())
 		{
 			storeActivityModel.setStoreEntryTime(new Date());
 
 			modelService.save(storeActivityModel);
-			LOG.info("::::::: customerEntryTime3 :::::::" + storeActivityModel.getStoreEntryTime());
+			LOG.info("::::::: customerEntryTime :::::::" + storeActivityModel.getStoreEntryTime());
 
-			customerStatus.setStatus("CustomerEntered");
 		}
 
 		return storeActivityModel.getStoreEntryTime();
@@ -116,7 +114,7 @@ public class StoreActivityServiceImpl implements StoreActivityService
 			storeActivityModel.setStoreExitTime(new Date());
 			modelService.save(storeActivityModel);
 			customerStatus.setStatus("CustomerEntered");
-			LOG.info("::::::: CustomerExitTime2 :::::::" + storeActivityModel.getStoreExitTime());
+			LOG.info("::::::: CustomerExitTime :::::::" + storeActivityModel.getStoreExitTime());
 
 
 		}
@@ -135,7 +133,7 @@ public class StoreActivityServiceImpl implements StoreActivityService
 			@SuppressWarnings("deprecation")
 			final int timeSpentInStore = CustomerExitTime(customerId).getMinutes() - customerEntryTime(customerId).getMinutes();
 			storeActivityModel.setTimeSpentInStore(String.valueOf((timeSpentInStore)));
-			//modelService.save(storeActivityModel);
+			modelService.save(storeActivityModel);
 			LOG.info("::::::: calculateTimeSpentInStore :::::::" + storeActivityModel.getTimeSpentInStore());
 		}
 		return storeActivityModel;
