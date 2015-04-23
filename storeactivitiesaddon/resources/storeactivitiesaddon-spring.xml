@@ -139,5 +139,27 @@
 		<property name="languageConverter" ref="languageConverter"/>
 		<property name="customerNameStrategy" ref="customerNameStrategy"/>
 	</bean>		
+	
+	<bean id="popularProductDao" class="com.acc.dao.impl.PopularProductDaoImpl">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+		<property name="modelService" ref="modelService"/>
+		
+	</bean>
+	<bean id="popularProductService" class="com.acc.service.impl.PopularProductServiceImpl">
+		<property name="popularProductDao" ref="popularProductDao"/>
+		<property name="modelService" ref="modelService"/>
+		
+		
+	</bean>
+	
+	<bean id="popularProductFacade" class="com.acc.facade.impl.PopularProductFacadeImpl">
+		<property name="popularProductService" ref="popularProductService"/>
+		<property name="productConverter" ref="productConverter"/>
+		
+	</bean>
+	
+	
+		<bean id="beaconData" class="com.acc.data.BeaconData" scope="prototype"/>
+
 			
 </beans>
