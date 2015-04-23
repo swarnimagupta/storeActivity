@@ -43,10 +43,16 @@
 			<sourceElement type="Customer" cardinality="one" qualifier="customer" />
 			<targetElement type="DeviceTypeCode" cardinality="many" qualifier="deviceTypeCode" collectiontype="list" />
 		</relation>
+		
+		<relation generate="true" localized="false"	code="Beacon2Product" autocreate="true">
+			<description>This relation connects the Products associated with the beacons.</description>
+			<sourceElement type="Beacon" cardinality="one" qualifier="beacon" />
+			<targetElement type="Product" cardinality="many" qualifier="product" collectiontype="list" />
+		</relation>
 	</relations>
 	<itemtypes>
 		<itemtype code="StoreActivity" autocreate="true" generate="true" extends="GenericItem">
-			<deployment table="StoreActivity" typecode="11009" />
+			<deployment table="StoreActivity" typecode="11015" />
 			<attributes>
 				<attribute qualifier="storeId" type="java.lang.String">
 					<description>store unique id</description>
@@ -93,6 +99,15 @@
 					<persistence type="property" />
 				</attribute>
 			</attributes>
+				</itemtype>
+			
+			<itemtype code="Product" autocreate="false" generate="false">
+			<attributes>
+				<attribute qualifier="popularityCount" type="java.lang.Integer">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+				</attributes>
 		</itemtype>
 	</itemtypes>
 </items>
