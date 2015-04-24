@@ -1,0 +1,12 @@
+#impex for product and beacon relation
+
+$productCatalog=electronicsProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+;1209761;8492E75F-4FD6-469D-B132-043FE94921D8;1
+;1225694;8492E75F-4FD6-469D-B132-043FE94921D8;2
+;1231346;8492E75F-4FD6-469D-B132-043FE94921D8;3
+;107701;8492E75F-4FD6-469D-B132-043FE94921D8;4
+;1099285;8492E75F-4FD6-469D-B132-043FE94921D8;5
+;1099413;8492E75F-4FD6-469D-B132-043FE94921D8;6
+;110561;8492E75F-4FD6-469D-B132-043FE94921D8;1
