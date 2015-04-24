@@ -30,6 +30,8 @@ public class PopularProductDaoImpl extends AbstractItemDao implements PopularPro
 
 	@Autowired
 	private CatalogVersionService catalogVersionService;
+	@Autowired
+	UserService userService;
 
 	/*
 	 * (non-Javadoc)
@@ -41,10 +43,10 @@ public class PopularProductDaoImpl extends AbstractItemDao implements PopularPro
 	{
 		LOG.info("beaconid+++++++++++++" + beaconId);
 		LOG.info("majorId+++++++++++++" + majorId);
-		LOG.info("majorId+++++++++++++" + majorId);
+		LOG.info("minorId+++++++++++++" + minorId);
 		final FlexibleSearchQuery flexibleQuery = new FlexibleSearchQuery(
-				"select {b.pk} from {beacon as b join product as p on {b.id} = {p.beaconId}} where {b.id}=?beaconId and  {b.majorId}=?majorId and {b.minorId}=?minorId");
-		//ORDER BY {p.popularityCount} DESC 
+				"select {b.pk} from {beacon as b join product as p on {b.id} = {p.beaconId}} where {b.id}=?beaconId and  {b.majorId}=?majorId and {b.minorId}=?minorId ORDER BY {p.popularityCount} DESC ");
+
 		flexibleQuery.addQueryParameter(BeaconModel.ID, beaconId);
 		flexibleQuery.addQueryParameter(BeaconModel.MAJORID, majorId);
 		flexibleQuery.addQueryParameter(BeaconModel.MINORID, minorId);
@@ -52,8 +54,9 @@ public class PopularProductDaoImpl extends AbstractItemDao implements PopularPro
 
 
 		catalogVersionService.setSessionCatalogVersion("electronicsProductCatalog", "Online");
-
+		flexibleQuery.setUser(userService.getAdminUser());
 		final SearchResult<BeaconModel> result = getFlexibleSearchService().search(flexibleQuery);
+		LOG.info("*****inside PopularProductDaoImpl******" + result.getResult().get(0).getProduct());
 		List<BeaconModel> beaconProducts = null;
 		if (CollectionUtils.isNotEmpty(result.getResult()))
 		{
