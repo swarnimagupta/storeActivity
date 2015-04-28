@@ -8,6 +8,7 @@ import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.servicelayer.internal.dao.AbstractItemDao;
 import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
 import de.hybris.platform.servicelayer.search.SearchResult;
+import de.hybris.platform.servicelayer.user.UserService;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class PopularProductDaoImpl extends AbstractItemDao implements PopularPro
 		LOG.info("majorId+++++++++++++" + majorId);
 		LOG.info("minorId+++++++++++++" + minorId);
 		final FlexibleSearchQuery flexibleQuery = new FlexibleSearchQuery(
-				"select {b.pk} from {beacon as b join product as p on {b.id} = {p.beaconId}} where {b.id}=?beaconId and  {b.majorId}=?majorId and {b.minorId}=?minorId ORDER BY {p.popularityCount} DESC ");
+				"select distinct {b.pk},Max({p.popularityCount}) from {beacon as b join product as p on {b.id} = {p.beaconId}} where {b.id}=?beaconId and  {b.majorId}=?majorId and {b.minorId}=?minorId Group By {b.pk} ORDER BY Max({p.popularityCount}) DESC ");
 
 		flexibleQuery.addQueryParameter(BeaconModel.ID, beaconId);
 		flexibleQuery.addQueryParameter(BeaconModel.MAJORID, majorId);
