@@ -109,7 +109,7 @@
 			
 			<itemtype code="Product" autocreate="false" generate="false">
 			<attributes>
-				<attribute qualifier="popularityCount" type="java.lang.Integer">
+				<attribute qualifier="popularityCount" type="int">
 					<modifiers read="true" write="true" search="true" optional="true" />
 					<persistence type="property" />
 				</attribute>

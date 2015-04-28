@@ -40,7 +40,7 @@
 	</bean>	
 	
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
-		<property name="popularityCount" type="Integer"/>
+		<property name="popularityCount" type="int"/>
 		</bean>
 	
 	<bean class="com.acc.data.BeaconData">
