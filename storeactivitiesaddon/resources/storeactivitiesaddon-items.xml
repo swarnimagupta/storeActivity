@@ -31,6 +31,12 @@
 			<value code="APP001" />
 			<value code="APP002" />
 		</enumtype>
+		<enumtype code="GenderType" generate="true" autocreate="true">
+			<description>This enumeration defines beacon type</description>
+			<value code="Male" />
+			<value code="Female" />
+			
+		</enumtype>
 	</enumtypes>
 	<relations>
 		<relation generate="true" localized="false"	code="Beacon2BeaconType" autocreate="true">
@@ -107,6 +113,28 @@
 					<modifiers read="true" write="true" search="true" optional="true" />
 					<persistence type="property" />
 				</attribute>
+				</attributes>
+		</itemtype>
+		
+		<itemtype code="Customer" autocreate="false" generate="false">
+			<attributes>
+				<attribute qualifier="weight" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="height" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="age" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="gender" type="GenderType">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+				
 				</attributes>
 		</itemtype>
 	</itemtypes>
