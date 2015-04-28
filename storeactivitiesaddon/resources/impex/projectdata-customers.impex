@@ -1,0 +1,6 @@
+INSERT_UPDATE Customer;uid[unique=true];height;weight;age;gender(code);
+;kishor.chockalingam@accenture.com;170;70;35;Male;
+;swarnima.gupta@accenture.com;160;53;27;Female
+;swapnil.a.pandey@accenture.com;165;54;25;Female
+;vijayanand.hongal@accenture.com;167;70;35;Male
+
