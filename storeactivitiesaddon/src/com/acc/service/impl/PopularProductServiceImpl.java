@@ -6,7 +6,9 @@ package com.acc.service.impl;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.model.ModelService;
+import de.hybris.platform.util.Config;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -77,19 +79,19 @@ public class PopularProductServiceImpl implements PopularProductService
 	@Override
 	public List<BeaconModel> getPopularProducts(final String beaconId, final String majorId, final String minorId)
 	{
+
 		LOG.info("inside PopularProductServiceImpl++++++++");
+
 		final int value = 1;
 		// YTODO Auto-generated method stub
 		final List<BeaconModel> beaconProducts = popularProductDao.getPopularProducts(beaconId, majorId, minorId);
-
+		final List<BeaconModel> beaconList = new ArrayList<BeaconModel>();
 		if (null != beaconProducts)
 		{
-
+			
 			for (final BeaconModel model : beaconProducts)
 			{
-				LOG.info("beaconProducts++++++++" + model.getProduct().size() + beaconProducts.size());
-
-
+				
 				if (CollectionUtils.isNotEmpty(model.getProduct()))
 				{
 					for (final ProductModel productModel : model.getProduct())
@@ -97,6 +99,7 @@ public class PopularProductServiceImpl implements PopularProductService
 						if (productModel.getPopularityCount() == 0)
 						{
 							productModel.setPopularityCount(value);
+							LOG.info("****going into if loop");
 						}
 						else
 						{
@@ -106,13 +109,21 @@ public class PopularProductServiceImpl implements PopularProductService
 							modelService.save(productModel);
 
 						}
-						//	if (beaconProducts.size()beaconId.get<=(Config.getParameter(MAX_NO_OF_POPULAR_PRODUCTS));
+
+					}
+					if (Integer.valueOf(model.getProduct().size()).intValue() > (Integer.valueOf(Config
+							.getParameter(MAX_NO_OF_POPULAR_PRODUCTS)).intValue()))
+
+					{
+						
+						model.getProduct().subList(0, Integer.valueOf(Config.getParameter(MAX_NO_OF_POPULAR_PRODUCTS)).intValue());
+						beaconList.add(model);
 					}
 				}
 			}
 		}
 
-		return beaconProducts;
+		return beaconList;
 
 	}
 }
