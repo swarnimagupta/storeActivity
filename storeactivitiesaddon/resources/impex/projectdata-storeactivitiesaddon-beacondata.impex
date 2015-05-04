@@ -1,5 +1,4 @@
 # ImpEx for beacons
-$productCatalog=electronicsProductCatalog
 $catalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$productCatalog]),CatalogVersion.version[default=Staged])[default=$productCatalog:Staged]
 
 INSERT_UPDATE Beacon;id;minorId[unique=true];majorId[unique=true];beaconType(code)[mode=append];product(code,$catalogVersion)[mode=append]

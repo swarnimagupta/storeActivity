@@ -19,6 +19,7 @@
 		<!-- <requires-extension name="cms"/> -->
 		<requires-extension name="hmc"/>
 		<requires-extension name="commercefacades"/>
+		<requires-extension name="addonsupport"/>
 
 		<coremodule generated="true" manager="com.acc.jalo.StoreactivitiesaddonManager" packageroot="com.acc"/>
 

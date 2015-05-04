@@ -113,6 +113,10 @@
 					<modifiers read="true" write="true" search="true" optional="true" />
 					<persistence type="property" />
 				</attribute>
+				<attribute qualifier="beaconId" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
 				</attributes>
 		</itemtype>
 		
@@ -134,8 +138,12 @@
 					<modifiers read="true" write="true" search="true" optional="true" />
 					<persistence type="property" />
 				</attribute>
-				
-				</attributes>
+			</attributes>
+		</itemtype>
+		<itemtype code="DesktopDeviceIdentificationComponent" autocreate="true"	generate="true" extends="SimpleCMSComponent"
+			jaloclass="de.hybris.platform.cms2lib.components.DesktopDeviceIdentificationComponent">
+			<attributes>
+			</attributes>
 		</itemtype>
 	</itemtypes>
 </items>

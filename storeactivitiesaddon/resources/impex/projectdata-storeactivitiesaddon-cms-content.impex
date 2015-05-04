@@ -1,0 +1,29 @@
+$contentCatalog=electronicsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$defaultLanguage=en
+$contentCatalogName=Electronics Content Catalog
+$productCatalog=electronicsProductCatalog
+$productCatalogName=Electronics Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$page=page(uid, $contentCV)                        ;
+$contentPage=contentPage(uid, $contentCV)          ;
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+
+
+########### Component #############
+insert_update DesktopDeviceIdentificationComponent;catalogVersion(catalog(id),version)[unique=true,allownull=true];name;onlyOneRestrictionMustApply[allownull=true];uid[unique=true,allownull=true];visible[allownull=true]
+;electronicsContentCatalog:Staged;DesktopDeviceIdentificationComponent;true;DesktopDeviceIdentificationComponent;true
+
+
+######DesktopDeviceIdentificationComponent component display on Account Page#######
+#for desktop
+# Account Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='AccountPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;TopContent;;DesktopDeviceIdentificationComponent;wide
+
+insert_update ContentSlot;active[allownull=true];catalogVersion(catalog(id),version)[unique=true,allownull=true];name;uid[unique=true,allownull=true];cmsComponents(uid[unique=true,allownull=true],$contentCV)
+;true;electronicsContentCatalog:Staged;DesktopDeviceIdentificationSlots;DesktopDeviceIdentificationSlots;DesktopDeviceIdentificationComponent
+
+insert_update ContentSlotForPage;catalogVersion(catalog(id),version)[unique=true,allownull=true];contentSlot(catalogVersion(catalog(id),version),uid)[allownull=true];page(catalogVersion(catalog(id),version),uid)[allownull=true];position[allownull=true];uid[unique=true,allownull=true]
+;electronicsContentCatalog:Staged;electronicsContentCatalog:Staged:DesktopDeviceIdentificationSlots;electronicsContentCatalog:Staged:account;TopContent;DesktopDeviceIdentificationCFP

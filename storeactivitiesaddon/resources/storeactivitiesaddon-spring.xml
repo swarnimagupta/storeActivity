@@ -142,24 +142,27 @@
 	
 	<bean id="popularProductDao" class="com.acc.dao.impl.PopularProductDaoImpl">
 		<property name="flexibleSearchService" ref="flexibleSearchService"/>
-		<property name="modelService" ref="modelService"/>
-		
+		<property name="modelService" ref="modelService"/>	
 	</bean>
 	<bean id="popularProductService" class="com.acc.service.impl.PopularProductServiceImpl">
 		<property name="popularProductDao" ref="popularProductDao"/>
-		<property name="modelService" ref="modelService"/>
-		
-		
+		<property name="modelService" ref="modelService"/>	
 	</bean>
 	
 	<bean id="popularProductFacade" class="com.acc.facade.impl.PopularProductFacadeImpl">
 		<property name="popularProductService" ref="popularProductService"/>
 		<property name="productConverter" ref="productConverter"/>
-		
 	</bean>
 	
 	
-		<bean id="beaconData" class="com.acc.data.BeaconData" scope="prototype"/>
+	<bean id="beaconData" class="com.acc.data.BeaconData" scope="prototype"/>
+	
+	<bean id="desktopDeviceIdentificationComponentRenderer" class="com.acc.storeactivitiesaddon.component.renderer.DesktopDeviceIdentificationRenderer">
+          <property name="typeService" ref="typeService" />
+          <property name="uiExperienceService" ref="defaultUiExperienceService" />
+          <property name="userService" ref="userService"/>
+          <property name="modelService" ref="modelService"/>
+	</bean>
 
 			
 </beans>
