@@ -27,3 +27,13 @@ insert_update ContentSlot;active[allownull=true];catalogVersion(catalog(id),vers
 
 insert_update ContentSlotForPage;catalogVersion(catalog(id),version)[unique=true,allownull=true];contentSlot(catalogVersion(catalog(id),version),uid)[allownull=true];page(catalogVersion(catalog(id),version),uid)[allownull=true];position[allownull=true];uid[unique=true,allownull=true]
 ;electronicsContentCatalog:Staged;electronicsContentCatalog:Staged:DesktopDeviceIdentificationSlots;electronicsContentCatalog:Staged:account;TopContent;DesktopDeviceIdentificationCFP
+
+
+######DesktopDeviceIdentificationComponent component display on Home Page#######
+#for desktop
+# Account Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LandingPage2Template'];validComponentTypes(code);compTypeGroup(code)
+;Section1;;DesktopDeviceIdentificationComponent;wide
+
+insert_update ContentSlotForPage;catalogVersion(catalog(id),version)[unique=true,allownull=true];contentSlot(catalogVersion(catalog(id),version),uid)[allownull=true];page(catalogVersion(catalog(id),version),uid)[allownull=true];position[allownull=true];uid[unique=true,allownull=true]
+;electronicsContentCatalog:Staged;electronicsContentCatalog:Staged:DesktopDeviceIdentificationSlots;electronicsContentCatalog:Staged:homepage;Section1;DesktopDeviceIdentificationCFHP

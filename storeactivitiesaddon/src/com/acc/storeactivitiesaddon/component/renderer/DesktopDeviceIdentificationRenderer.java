@@ -39,18 +39,21 @@ public class DesktopDeviceIdentificationRenderer<C extends DesktopDeviceIdentifi
 	{
 		LOG.info("inside device identification component renderer");
 		final CustomerModel customer = (CustomerModel) getUserService().getCurrentUser();
-		final List<DeviceTypeCode> deviceTypeCodes = customer.getDeviceTypeCode();
-		final List<DeviceTypeCode> newDeviceTypeCodes = new ArrayList<DeviceTypeCode>();
-		for (final DeviceTypeCode deviceTypeCode : deviceTypeCodes)
+		if (null != customer && !"anonymous".equals(customer.getUid()))
 		{
-			newDeviceTypeCodes.add(deviceTypeCode);
+			final List<DeviceTypeCode> deviceTypeCodes = customer.getDeviceTypeCode();
+			final List<DeviceTypeCode> newDeviceTypeCodes = new ArrayList<DeviceTypeCode>();
+			for (final DeviceTypeCode deviceTypeCode : deviceTypeCodes)
+			{
+				newDeviceTypeCodes.add(deviceTypeCode);
+			}
+			if (!newDeviceTypeCodes.contains(DeviceTypeCode.APP001))
+			{
+				newDeviceTypeCodes.add(DeviceTypeCode.APP001);
+			}
+			customer.setDeviceTypeCode(newDeviceTypeCodes);
+			getModelService().save(customer);
 		}
-		if (!newDeviceTypeCodes.contains(DeviceTypeCode.APP001))
-		{
-			newDeviceTypeCodes.add(DeviceTypeCode.APP001);
-		}
-		customer.setDeviceTypeCode(newDeviceTypeCodes);
-		getModelService().save(customer);
 		final Map<String, Object> variables = new HashMap<String, Object>();
 		return variables;
 	}
